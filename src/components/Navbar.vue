@@ -29,8 +29,8 @@
           >
             <el-dropdown-item>Docs</el-dropdown-item>
           </a>
-          <el-dropdown-item divided @click.native="logout">
-            <span style="display: block">Log Out</span>
+          <el-dropdown-item divided>
+            <span style="display: block" @click="Logout">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -39,6 +39,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import Breadcrumb from "./Breadcrumb.vue";
 import Hamburger from "./Hamburger.vue";
 export default {
@@ -46,6 +47,16 @@ export default {
   components: {
     Breadcrumb,
     Hamburger,
+  },
+  methods: {
+    ...mapActions("auth", ["setAuthenticated"]),
+    Logout(e) {
+      e.preventDefault();
+      this.setAuthenticated(false);
+      if (this.$route.path !== "/") {
+        this.$router.push("/");
+      }
+    },
   },
 };
 </script>

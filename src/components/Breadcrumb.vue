@@ -1,6 +1,6 @@
 <template>
   <el-breadcrumb class="app-breadcrumb">
-    <a>Admin</a>
+    <span>Admin</span>
   </el-breadcrumb>
 </template>
 
